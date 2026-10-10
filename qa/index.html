@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayet Ayadi, QA Engineer & Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBFCFE;
+    --surface: #FFFFFF;
+    --ink: #1D3A5F;
+    --ink-soft: #5E7A9A;
+    --line: #D7E2EE;
+    --accent: #3E6FA8;
+    --accent-soft: #EAF1F9;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Work Sans', sans-serif;
+    --display: 'Fraunces', serif;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #0F2238;
+      --surface: #16314E;
+      --ink: #EFF4FA;
+      --ink-soft: #9FB7D1;
+      --line: #28496D;
+      --accent: #85B2E0;
+      --accent-soft: #1C3C5E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #0F2238;
+    --surface: #16314E;
+    --ink: #EFF4FA;
+    --ink-soft: #9FB7D1;
+    --line: #28496D;
+    --accent: #85B2E0;
+    --accent-soft: #1C3C5E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* ---- NAV ---- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom:16px;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em;}
+  .navlinks{display:flex; gap:26px; font-size:14px; font-family:var(--mono);}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .navlinks a:hover{color:var(--accent);}
+
+  /* ---- HERO ---- */
+  header.hero{padding:76px 0 56px;}
+  .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;}
+  @media (max-width:760px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--accent);
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:var(--display); font-weight:600; font-style:italic;
+    font-size:clamp(34px,5.2vw,54px); line-height:1.12; margin:0 0 18px; letter-spacing:0;
+  }
+  .lede{font-size:18px; color:var(--ink-soft); max-width:46ch; margin:0 0 28px;}
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 18px; border-radius:7px; font-size:14px; font-weight:500;
+    text-decoration:none; border:1px solid var(--line); transition:transform .12s, border-color .12s;
+  }
+  .btn:hover{transform:translateY(-1px); border-color:var(--accent);}
+  .btn.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .btn.primary:hover{opacity:.92;}
+
+  /* ---- TERMINAL CARD ---- */
+  .term{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; font-family:var(--mono); font-size:13px;
+    box-shadow: 0 10px 30px -18px rgba(29,58,95,0.35);
+  }
+  .term-bar{
+    display:flex; gap:6px; padding:10px 14px; border-bottom:1px solid var(--line);
+    background:var(--accent-soft);
+  }
+  .dot{width:9px; height:9px; border-radius:50%; background:var(--line);}
+  .term-body{padding:18px;}
+  .term-line{margin:0 0 9px; color:var(--ink-soft);}
+  .term-line .k{color:var(--accent);}
+  .term-line .v{color:var(--ink); font-weight:500;}
+  .term-rule{border:none; border-top:1px dashed var(--line); margin:14px 0;}
+  .pass{color:var(--accent); font-weight:600;}
+
+  /* ---- SECTIONS ---- */
+  section{padding:48px 0;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:26px;}
+  .section-head h2{
+    font-family:var(--display); font-size:22px; margin:0; font-weight:600;
+  }
+  .section-head .idx{font-family:var(--mono); font-size:13px; color:var(--ink-soft);}
+  .rule{height:1px; background:var(--line); flex:1;}
+
+  /* ---- SKILLS ---- */
+  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media (max-width:700px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px;
+  }
+  .skill-card.lead{border-color:var(--accent);}
+  .skill-card h3{margin:0 0 9px; font-size:14px; font-family:var(--mono); color:var(--accent);}
+  .skill-card p{margin:0; font-size:14px; color:var(--ink-soft); line-height:1.6;}
+
+  /* ---- EXPERIENCE ---- */
+  .xp{border-left:2px solid var(--line); padding-left:22px; margin-left:4px;}
+  .xp-item{position:relative; padding-bottom:30px;}
+  .xp-item:last-child{padding-bottom:0;}
+  .xp-item::before{
+    content:""; position:absolute; left:-27px; top:5px;
+    width:9px; height:9px; border-radius:50%; background:var(--accent);
+  }
+  .xp-top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+  .xp-role{font-weight:600; font-size:16px;}
+  .xp-date{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); white-space:nowrap;}
+  .xp-org{font-size:14px; color:var(--accent); margin-bottom:8px;}
+  .xp-item ul{margin:0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .xp-item li{margin-bottom:5px;}
+  .xp-item li b, .xp-item li strong{color:var(--ink); font-weight:600;}
+
+  /* ---- PROJECTS ---- */
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  @media (max-width:700px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:22px;
+    display:flex; flex-direction:column; gap:10px; text-decoration:none; color:inherit;
+    transition:border-color .15s, transform .15s, box-shadow .15s;
+  }
+  a.proj-card:hover{border-color:var(--accent); transform:translateY(-2px); box-shadow:0 14px 32px -20px rgba(29,58,95,0.4);}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .proj-name{font-weight:600; font-size:16px; font-family:var(--display);}
+  .proj-arrow{font-family:var(--mono); color:var(--ink-soft); font-size:14px;}
+  .proj-desc{font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:4px;}
+  .tag{
+    font-family:var(--mono); font-size:11.5px; color:var(--accent);
+    background:var(--accent-soft); padding:3px 8px; border-radius:5px;
+  }
+
+  /* ---- EDUCATION / CERTS ---- */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:700px){.two-col{grid-template-columns:1fr;}}
+  .list-item{margin-bottom:16px;}
+  .list-item .t1{font-weight:600; font-size:14.5px;}
+  .list-item .t2{font-size:13.5px; color:var(--ink-soft);}
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0 calc(36px + env(safe-area-inset-bottom, 0px));
+    font-size:14px; color:var(--ink-soft);
+  }
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+  footer a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid var(--line);}
+  footer a:hover{color:var(--accent); border-color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">ayet<span style="color:var(--accent)">.</span>ayadi</div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">QA ENGINEER &amp; SOFTWARE DEVELOPER · TUNIS</p>
+      <h1>I build software, and the tests that prove it works.</h1>
+      <p class="lede">Software engineering graduate (2nd of class, ISAMM 2026) with a dual QA/development profile. I design ISTQB-grounded test strategies and automation (Playwright, xUnit, Postman) as naturally as I build the full-stack products they validate: Java/Spring Boot, Python/FastAPI, .NET, Angular, and the AI agents running inside them.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn" href="https://github.com/ayetayadi" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="https://www.linkedin.com/in/ayet-ayadi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="term-body">
+        <p class="term-line"><span class="k">$</span> run testforge_ai --suite full</p>
+        <p class="term-line">design: <span class="v">ISTQB · Gherkin/BDD</span></p>
+        <p class="term-line">agent: <span class="v">ReAct · MCP Playwright</span></p>
+        <p class="term-line">risk_model: <span class="v">XGBoost · Macro F1 0.81</span></p>
+        <hr class="term-rule">
+        <p class="term-line">scenarios executed: <span class="v">128 / 128</span></p>
+        <p class="term-line">status: <span class="pass">100% PASS</span></p>
+        <p class="term-line" style="margin-bottom:0;">→ selected for industrialization @ Capgemini</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">01</span><h2>What I work with</h2><div class="rule"></div></div>
+    <div class="skill-grid">
+      <div class="skill-card lead">
+        <h3>TESTING &amp; QA</h3>
+        <p>Playwright (incl. MCP), xUnit, Mockito, Postman, Swagger. Manual &amp; exploratory testing, test design (Gherkin/BDD, ISTQB), SQL validation, CI/CD test integration.</p>
+      </div>
+      <div class="skill-card">
+        <h3>FRONTEND</h3>
+        <p>Angular, React, TypeScript, JavaScript, HTML5/CSS3. Component architecture, state management, modular apps.</p>
+      </div>
+      <div class="skill-card">
+        <h3>BACKEND</h3>
+        <p>Java (Spring Boot), Python (FastAPI, Flask), C#/.NET, Node.js. REST APIs, service design, system integration.</p>
+      </div>
+      <div class="skill-card">
+        <h3>AI &amp; AGENTS</h3>
+        <p>LLM, RAG, LangGraph, ReAct &amp; tool-calling agents, MCP, LangSmith. ML risk prediction (XGBoost) applied to test prioritization.</p>
+      </div>
+      <div class="skill-card">
+        <h3>DATA</h3>
+        <p>PostgreSQL, MySQL, MongoDB, Redis. Relational and document stores, query optimization.</p>
+      </div>
+      <div class="skill-card">
+        <h3>DEVOPS</h3>
+        <p>Docker, GitHub Actions CI/CD, Azure DevOps, Git. Shipped and deployed end to end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">02</span><h2>Experience</h2><div class="rule"></div></div>
+    <div class="xp">
+      <div class="xp-item">
+        <div class="xp-top"><span class="xp-role">QA, AI &amp; Test Automation Engineer, End-of-Studies Internship</span><span class="xp-date">Feb to Jun 2026</span></div>
+        <div class="xp-org">Capgemini Engineering, Ariana</div>
+        <ul>
+          <li>Designed <b>TestForge AI</b> (Angular, FastAPI, PostgreSQL), an ISTQB-grounded test platform that imports and refines User Stories &amp; acceptance criteria from Jira.</li>
+          <li>Built a <b>ReAct agent</b> with <b>MCP Playwright</b> orchestrating end-to-end test execution, reaching 100% success across all scenarios, <b>selected for industrialization</b>.</li>
+          <li>Implemented automated failure diagnosis (implementation vs. acceptance criteria) enabling reliable regression testing, and evaluated agent reliability with LangSmith.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><span class="xp-role">Full-Stack Developer Intern</span><span class="xp-date">Jul to Aug 2025</span></div>
+        <div class="xp-org">Capgemini Engineering, Ariana</div>
+        <ul>
+          <li>Built a full-stack web application (Flask, Angular, MongoDB) to automatically extract business rules from functional specifications.</li>
+          <li>Secured the application against SQL injection, implemented rate limiting and content filtering.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><span class="xp-role">Full-Stack Developer, Freelance</span><span class="xp-date">Feb to Jun 2025</span></div>
+        <div class="xp-org">Aryana Services, Remote</div>
+        <ul>
+          <li>Developed a visa application management platform (C#/.NET + Angular/TypeScript).</li>
+          <li>Wrote and maintained unit and end-to-end tests with xUnit, covering API (documented via Swagger) and UI layers, reducing regressions.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><span class="xp-role">R&amp;D Intern &amp; Team Lead, Summer Internship</span><span class="xp-date">Jul to Aug 2024</span></div>
+        <div class="xp-org">Ijeni, Ennasr</div>
+        <ul>
+          <li>Researched hexagonal architecture and DDD patterns on a shared .NET codebase.</li>
+          <li>Reviewed the codebase for quality and consistency (APIs documented via Swagger), mentoring 2 interns through code reviews (Git).</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><span class="xp-role">Full-Stack Developer, End-of-Studies Internship</span><span class="xp-date">Feb to May 2023</span></div>
+        <div class="xp-org">Ijeni, Ennasr</div>
+        <ul>
+          <li>Developed an ad-banner management platform (Angular, Node.js, microservices architecture).</li>
+          <li>Tested its APIs with Postman, in an Agile Scrum environment.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">03</span><h2>Projects</h2><div class="rule"></div></div>
+    <div class="proj-grid">
+      <a class="proj-card" href="https://github.com/ayetayadi/TestForge-AI" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-name">TestForge AI</span><span class="proj-arrow">↗</span></div>
+        <p class="proj-desc">ISTQB-grounded, AI-native test automation platform: ML risk prediction + LLM test generation + a ReAct agent executing tests via MCP Playwright. 100% success rate, selected for industrialization.</p>
+        <div class="tag-row"><span class="tag">ISTQB</span><span class="tag">Gherkin/BDD</span><span class="tag">MCP Playwright</span><span class="tag">FastAPI</span></div>
+      </a>
+      <div class="proj-card">
+        <div class="proj-top"><span class="proj-name">Ettaba</span><span class="proj-arrow">1st prize</span></div>
+        <p class="proj-desc">Software quality audit of a platform (team of 4) using ISO/IEC 25010 and DMAIC, refactored per SOLID/GRASP, analyzed with SonarQube. Diagnosed 3 slow SQL queries causing 80% of delays, fixed them, added Redis caching, CDN migration and a CI/CD pipeline.</p>
+        <div class="tag-row"><span class="tag">ISO/IEC 25010</span><span class="tag">DMAIC</span><span class="tag">SonarQube</span><span class="tag">SQL</span></div>
+      </div>
+      <a class="proj-card" href="https://github.com/ayetayadi/gestion-bibliotheque-devops" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-name">BiblioNet</span><span class="proj-arrow">↗</span></div>
+        <p class="proj-desc">Library reservation and loan management app (Java/Spring Boot, MySQL) with unit/integration tests (Mockito) run via GitHub Actions, task tracking in Azure DevOps, containerized with Docker.</p>
+        <div class="tag-row"><span class="tag">Spring Boot</span><span class="tag">Mockito</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span></div>
+      </a>
+      <a class="proj-card" href="https://github.com/ayetayadi" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-name">Orientini</span><span class="proj-arrow">↗</span></div>
+        <p class="proj-desc">AI academic orientation chatbot. RAG architecture with FAISS vector search and an LLM workflow for personalized, explainable university-track recommendations.</p>
+        <div class="tag-row"><span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Gemini</span></div>
+      </a>
+      <a class="proj-card" href="https://github.com/ayetayadi/engineering-journey-platform" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-name">Engineering Journey Platform</span><span class="proj-arrow">↗</span></div>
+        <p class="proj-desc">Full-stack MERN platform in TypeScript managing engineering students' academic progress, accounts, internship tracking, and auto CV generation. Built with a team of 8.</p>
+        <div class="tag-row"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">TypeScript</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="idx">04</span><h2>About</h2><div class="rule"></div></div>
+    <p style="font-size:16px; color:var(--ink-soft); max-width:62ch; margin:0 0 36px;">
+      I graduated 2nd of my class in Software Engineering from ISAMM, University of Manouba. My path blends quality
+      engineering and full-stack development: I design test strategies as carefully as I build the systems they
+      validate. At Capgemini Engineering I designed TestForge AI, an ISTQB-grounded test automation platform that
+      went from a graduation project to a tool selected for industrialization. Outside internships, I have built
+      and tested full-stack platforms end to end, from REST APIs and Angular front-ends to CI/CD pipelines, and
+      I am comfortable across manual testing, test automation (Playwright, xUnit, Mockito), and API testing
+      (Postman, Swagger). I am now looking for a QA role where I can keep bridging rigorous testing with
+      full-stack delivery.
+    </p>
+    <div class="section-head" style="margin-top:8px;"><span class="idx">05</span><h2>Education &amp; Certifications</h2><div class="rule"></div></div>
+    <div class="two-col">
+      <div>
+        <div class="list-item">
+          <div class="t1">Engineering Degree in Software Engineering</div>
+          <div class="t2">ISAMM, University of Manouba, 2nd of graduating class, 2023 to 2026</div>
+        </div>
+        <div class="list-item">
+          <div class="t1">Bachelor's Degree in Computer Science</div>
+          <div class="t2">ISAMM, University of Manouba, 2020 to 2023</div>
+        </div>
+      </div>
+      <div>
+        <div class="list-item">
+          <div class="t1">AI Agent Fundamentals</div>
+          <div class="t2">DataCamp, 2026. Agents, multi-agent systems, MCP &amp; A2A protocols</div>
+        </div>
+        <div class="list-item">
+          <div class="t1">TOEIC Listening &amp; Reading, 880/990</div>
+          <div class="t2">Amideast, 2026</div>
+        </div>
+        <div class="list-item">
+          <div class="t1">Cisco CCNA</div>
+          <div class="t2">Cisco, 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>Based in Tunis, Tunisia.</div>
+    <div style="display:flex; gap:18px;">
+      <a href="mailto:ayetayadi01@gmail.com">ayetayadi01@gmail.com</a>
+      <a href="https://github.com/ayetayadi" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/ayet-ayadi/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
